@@ -59,5 +59,6 @@
   "files.associations": {
     "ostream": "cpp",
     "iostream": "cpp"
-  }
+  },
+  "java.debug.settings.onBuildFailureProceed": true
 }

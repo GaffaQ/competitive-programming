@@ -1,6 +1,13 @@
 {
   "configurations": [
     {
+      "type": "java",
+      "name": "test",
+      "request": "launch",
+      "mainClass": "test",
+      "projectName": "competitive programming_9c082f68"
+    },
+    {
       "name": "C/C++: g++.exe build and debug active file",
       "type": "cppdbg",
       "request": "launch",
