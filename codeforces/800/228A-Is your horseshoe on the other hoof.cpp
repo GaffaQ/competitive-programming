@@ -1,19 +1,17 @@
 #include <bits/stdc++.h>
+#define ll long long
 
 using namespace std;
 
 int main () {
 
-    int n,temp,cnt=0;
+    ll a,b,c,d; cin >> a >> b >> c >> d;
+    set<ll> s;
+    s.insert(a);
+    s.insert(b);
+    s.insert(c);
+    s.insert(d);
+    cout << 4 - s.size() << endl;
 
-    for (int i = 0; i < 4; i++) {
-        cin >> n;
-        if (n != temp) {
-            cnt++;
-            temp = n;
-        }
-    }
-
-    cout << 4-cnt << endl;
 
 }
