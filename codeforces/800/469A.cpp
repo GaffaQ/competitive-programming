@@ -17,8 +17,6 @@ int main () {
         }
     }
 
-
-
     for (auto a : arr) {
         if (!a) {
             cout << "Oh, my keyboard!" << endl;
