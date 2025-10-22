@@ -1,0 +1,3 @@
+# Abaikan semua file .exe
+*.exe
+.vscode/
