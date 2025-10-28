@@ -29,6 +29,7 @@ public class angkahepi {
             n = cekHappy(n);
         }
         System.out.println("Happy");
+        scan.close();
     }
 
 

@@ -22,6 +22,7 @@ public class pasanganSerasi {
                 }
             }
         }
+        sc.close();
 
         System.out.println(sum);
 
