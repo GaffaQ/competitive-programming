@@ -5,12 +5,12 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    const int LIMIT = 1300000; // cukup untuk 100000 bilangan prima
+    const int LIMIT = 1300000; 
     vector<bool> isPrime(LIMIT + 1, true);
     vector<int> primes;
     vector<long long> pref;
 
-    // Sieve of Eratosthenes
+    // sieve
     isPrime[0] = isPrime[1] = false;
     for (int i = 2; i * i <= LIMIT; i++) {
         if (isPrime[i]) {
@@ -19,7 +19,6 @@ int main() {
         }
     }
 
-    // simpan bilangan prima
     for (int i = 2; i <= LIMIT && (int)primes.size() < 100000; i++) {
         if (isPrime[i]) primes.push_back(i);
     }
