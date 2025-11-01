@@ -1,45 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int limit = 1300000;
-bool primes[limit];
-vector<int> daftar;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-void loadPrime(){
-    memset(primes, true, sizeof(primes));
-    primes[0] = primes[1] = false;
-    for (int i = 2; i*i <= limit; i++) {
-        if (primes[i]){
-            for (int j = i*i; j <= limit; j+=i) {
-                primes[j] = false;
-            }
-        } 
-    }
+    const int LIMIT = 1300000; // cukup untuk 100000 bilangan prima
+    vector<bool> isPrime(LIMIT + 1, true);
+    vector<int> primes;
+    vector<long long> pref;
 
-    for (int i = 0; i <= limit; i++) {
-        if (primes[i]){
-            daftar.push_back(i);
+    // Sieve of Eratosthenes
+    isPrime[0] = isPrime[1] = false;
+    for (int i = 2; i * i <= LIMIT; i++) {
+        if (isPrime[i]) {
+            for (int j = i * i; j <= LIMIT; j += i)
+                isPrime[j] = false;
         }
     }
-}
 
-
-int main() {
-    
-    int t; cin >> t;
-    loadPrime();
-
-    //prefsum
-    vector<int> prefsum;
-    prefsum.push_back(0);
-    for (int i = 1; i < (int)daftar.size()+1; i++) {
-        prefsum.push_back(prefsum[i-1] + daftar[i-1]);
+    // simpan bilangan prima
+    for (int i = 2; i <= LIMIT && (int)primes.size() < 100000; i++) {
+        if (isPrime[i]) primes.push_back(i);
     }
 
+    // prefix sum
+    pref.resize(primes.size() + 1, 0);
+    for (int i = 1; i <= (int)primes.size(); i++) {
+        pref[i] = pref[i - 1] + primes[i - 1];
+    }
+
+    int t;
+    cin >> t;
     while (t--) {
-        int l,r; cin >> l >> r;
-        cout << prefsum[r] - prefsum[l-1] << endl;
+        int l, r;
+        cin >> l >> r;
+        cout << pref[r] - pref[l - 1] << "\n";
     }
 
-
+    return 0;
 }
