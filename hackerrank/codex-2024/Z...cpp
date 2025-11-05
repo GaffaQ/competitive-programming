@@ -2,33 +2,51 @@
 
 using namespace std;
 
-bool prime[1300000];
-vector<int> v;
-
-void loadPrime(){
-    for(int i = 2; i*i < 1300000; i++) {
-        if (prime[i]) {
-            for (int j = i*i; j <= 1300000; j+=i) {
-                prime[j] = false;
-            }
-            v.push_back(i);
-        }
-    }
-}
 
 int main () {
 
-    memset(prime, true, sizeof(prime));
-    loadPrime();
-    int t; cin >> t;
-    while(t--){
-        int l,r; cin >> l >> r;
-        long long sum = 0;
-        for (int i = l; i <= r; i++) {
-            sum += v[i-1];
-            // cout << v[i-1] << " ";
+    int n; cin >> n;
+    int arr[n][2];
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 2; j++) {
+            cin >> arr[i][j];
         }
-        cout << sum << endl;
     }
 
+    int startI = 0, startJ = 0, maks = 0, sum = arr[0][0];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 2; j++) {
+            // dikiri
+            bool flag = true;
+            if (j == 0 && (arr[i][j] + arr[i][j+1] % 2 == 0)) {
+                sum += arr[i][j+1];
+            }else {
+                flag = false;
+            }
+
+            //dikanan
+            bool flug = true;
+            if (j == 1 && i+1 < n && (arr[i][j] + arr[i+1][0] % 2 == 0)) {
+                sum += arr[i+1][0];
+            }else{
+                flug = false;
+            }
+
+            
+                if (sum > maks) {
+                    maks = sum;
+                    sum = 0;
+                }
+                
+
+
+            
+        }
+    }
+
+    cout << "Bilangan maksimal adalah: " << maks << endl;
+    cout << "Jika dimulai dari titik: " << startI << "," << startJ << endl;
+
 }
+
