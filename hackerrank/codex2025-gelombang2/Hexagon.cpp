@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--) {
+        ll n;
+        cin >> n;
+        n++;
+        ll res = 1 + 3*n*(n-1);
+        cout << res << "\n";
+    }
+}
