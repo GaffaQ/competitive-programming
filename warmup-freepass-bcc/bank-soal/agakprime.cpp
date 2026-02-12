@@ -3,9 +3,6 @@
 
 using namespace std;
 
-int MAKS=10000001;
-vector<int> v(MAKS, 0);
-
 int prime(ll n) {
 
     int cnt=0;
