@@ -11,7 +11,7 @@ int main () {
     if(n%2==0){
         ans = (double)(arr[n/2]+arr[(n/2)-1])/2;
     }else{
-        ans = arr[n/2];
+        ans = (double)arr[n/2];
     }
     cout << fixed << setprecision(1) << ans << "\n";
 }
