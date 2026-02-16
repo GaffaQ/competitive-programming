@@ -30,6 +30,6 @@ int main () {
                 l = tengah+1;
             }
         }
-        cout << ans << "\n";
+        cout << ans+1 << "\n";
     }
 }
