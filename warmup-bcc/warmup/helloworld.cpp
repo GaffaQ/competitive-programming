@@ -32,38 +32,13 @@ ll gcd(ll a, ll b){
     return gcd(b, a % b);
 }
 
-int josephus(int n, int k) {
-    int res = 0; // J(1, k) = 0
-    for(int i = 2; i <= n; i++) {
-        res = (res + k) % i;
-    }
-    return res;
-}
-
 //kpk
 ll lcm(ll a, ll b){
     return a / gcd(a,b) * b;
 }
 
 void solve(){
-    int n,q; cin >> n >> q;
-    vi v(n), pref(n+1);
-
-    fr(i,n) cin>>v[i];
-
-    pref[0] = (v[0] % 2 == 0);
-    // cout << pref[0] << " ";
-
-    for (int i = 1; i < n; i++) {
-        pref[i] = pref[i-1] + (v[i]%2==0);
-        // cout << pref[i] << " ";
-    }
-    // cout << endl;
-
-    fr(i,q) {
-        int l,r; cin>>l>>r;
-        cout <<pref[r]-pref[l == 0 ? 0 : l-1] << endl;
-    }
+    cout << "Hello, World!" << "\n";
 }
 
 int main(){

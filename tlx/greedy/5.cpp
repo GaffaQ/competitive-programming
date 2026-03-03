@@ -32,38 +32,40 @@ ll gcd(ll a, ll b){
     return gcd(b, a % b);
 }
 
-int josephus(int n, int k) {
-    int res = 0; // J(1, k) = 0
-    for(int i = 2; i <= n; i++) {
-        res = (res + k) % i;
-    }
-    return res;
-}
-
 //kpk
 ll lcm(ll a, ll b){
     return a / gcd(a,b) * b;
 }
 
 void solve(){
-    int n,q; cin >> n >> q;
-    vi v(n), pref(n+1);
+    int n,m; cin >> n >> m;
+    vector<int> a(n),b(m);
+    bool cek[1000001];
+    memset(cek, false, sizeof(cek));
 
-    fr(i,n) cin>>v[i];
-
-    pref[0] = (v[0] % 2 == 0);
-    // cout << pref[0] << " ";
-
-    for (int i = 1; i < n; i++) {
-        pref[i] = pref[i-1] + (v[i]%2==0);
-        // cout << pref[i] << " ";
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
     }
-    // cout << endl;
 
-    fr(i,q) {
-        int l,r; cin>>l>>r;
-        cout <<pref[r]-pref[l == 0 ? 0 : l-1] << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> b[i];
     }
+
+    sort (all(a));
+    sort (all(b));
+
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if ((a[i]-b[j]==0 || b[j]-a[i]==1) && !cek[j]) {
+                cek[j] = true;
+                ans++;
+                break;
+            }
+        }
+    }
+
+    cout << ans << endl;
 }
 
 int main(){
