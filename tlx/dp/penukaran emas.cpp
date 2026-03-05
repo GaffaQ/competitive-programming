@@ -7,8 +7,14 @@ using namespace std;
 
 int main () {
     bismillah
-    
-    int n;cin >> n;
-    cout << (n%2==0 ? "Tidak" : "Perlu") << endl;
+
+    int n; cin >> n;
+    int dp[n+1];
+    dp[0] = 0;
+    for (int i = 1; i <= n; i++) {
+        dp[i] = max(i, dp[i/2] + dp[i/3] + dp[i/4]);
+    }
+
+    cout << dp[n] << endl;
     
 }

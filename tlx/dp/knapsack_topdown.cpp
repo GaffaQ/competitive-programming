@@ -26,7 +26,6 @@ int knapsack(int i, int c) {
     return best;
 }
 
-
 int main () {
     bismillah
     

@@ -8,7 +8,14 @@ using namespace std;
 int main () {
     bismillah
     
-    int n;cin >> n;
-    cout << (n%2==0 ? "Tidak" : "Perlu") << endl;
+    ll n; cin >> n;
+
+    cout << n << " ";
+    while (n != 1) {
+        if (n % 2 == 1) n = n*3ll+1ll;
+        else n /= 2ll;
+
+        cout << n << " ";
+    }
     
 }
