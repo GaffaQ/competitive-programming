@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 // ██████╗░██╗░██████╗███╗░░░███╗██╗██╗░░░░░██╗░░░░░░█████╗░██╗░░██╗
 // ██╔══██╗██║██╔════╝████╗░████║██║██║░░░░░██║░░░░░██╔══██╗██║░░██║
 // ██████╦╝██║╚█████╗░██╔████╔██║██║██║░░░░░██║░░░░░███████║███████║
@@ -8,19 +9,14 @@ using namespace std;
 // ██████╦╝██║██████╔╝██║░╚═╝░██║██║███████╗███████╗██║░░██║██║░░██║
 // ╚═════╝░╚═╝╚═════╝░╚═╝░░░░░╚═╝╚═╝╚══════╝╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝
 
-#define bismillah ios::sync_with_stdio(false); cin.tie(NULL);
+#define fastio ios::sync_with_stdio(false); cin.tie(NULL);
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
-#define fr(i, n) for (ll i = 0; i < (n); i++)
-#define frr(i,n) for (ll i = 1; i <= (n); i++)
+#define fr(i, n) for (int i = 0; i < (n); i++)
 #define pb push_back
 #define fi first
 #define se second
-#define no cout << "NO" << endl;
-#define yes cout << "YES" << endl;
-#define maxx(a,b,c) max((a), max((b),(c))
-#define minn(a,b,c) min((a), min((b),(c))
 
 using ll = long long;
 using ld = long double;
@@ -38,21 +34,39 @@ const int MOD = 1e9+7;
 #define debug(x)
 #endif
 
-ll fpb(ll a, ll b){
+//fpb
+ll gcd(ll a, ll b){
     if(b == 0) return a;
-    return fpb(b, a % b);
+    return gcd(b, a % b);
 }
 
-ll kpk(ll a, ll b){
-    return a / fpb(a,b) * b;
+//kpk
+ll lcm(ll a, ll b){
+    return a / gcd(a,b) * b;
 }
 
 void solve(){
-    
+    int n,k; cin >> n >> k;
+    vi arr(n+1), dp(n+1);
+
+    for(int i = 1; i <= n; i++) {
+        cin >> arr[i];
+        dp[i] = dp[i-1]+arr[i];
+    }
+
+    int mins = INT_MAX, ans = 1;
+    for (int i = k; i <= n; i++) {
+        if (dp[i]-dp[i-k] < mins){
+            mins = dp[i]-dp[i-k];
+            ans = i-k+1;
+        }
+    }
+
+    cout << ans << endl;
 }
 
 int main(){
-    bismillah;
+    fastio;
 
     int t = 1;
     // cin >> t;

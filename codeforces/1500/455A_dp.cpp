@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define bismillah ios::sync_with_stdio(false); cin.tie(NULL);
+#define fastio ios::sync_with_stdio(false); cin.tie(NULL);
 #define endl '\n'
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
@@ -38,36 +38,29 @@ ll lcm(ll a, ll b){
 }
 
 void solve(){
-    int n; cin >> n;
-    vi shop(n);
-    fr(i,n) cin >> shop[i];
-    sort(all(shop));
-    int q; cin >> q;
-    while(q--){
-        int m; cin >> m;
-        int l=0, r=n-1, high=-1;
-        while (l <= r){
-            int mid = (l+r)/2;
-            // if (shop[mid]==m) {
-            //     high = mid;
-            //     break;
-            // }
-            if (m >= shop[mid]) {
-                high = mid;
-                l = mid+1;
-            }else{
-                high = mid-1;
-                r = mid-1;
-            }
-            // cout << "mid: " << mid << " " << " l r: " << l << " " << r;
-        }
-        if (high != -1) cout << high+1 << endl;
-        else cout << 0 << endl;
+    
+    ll n; cin >> n;
+    const int MAX = 100005;
+    vector<ll> arr(MAX, 0), dp(MAX, 0);
+
+    for (ll i = 0; i < n; i++) {
+        ll x; cin >> x;
+        arr[x]++;
     }
+
+    dp[0] = 0;
+    dp[1] = arr[1];
+
+    for (ll i = 2; i < MAX; i++) {
+        dp[i] = max(dp[i-1], dp[i-2] + arr[i] * i);
+    }
+
+    cout << dp[MAX-1] << endl;
+
 }
 
 int main(){
-    bismillah;
+    fastio;
 
     int t = 1;
     // cin >> t;
