@@ -33,10 +33,11 @@ int main () {
     for (int i = 1; i <= k; i++) {
         cin >> w[i] >> h[i];
     }
+
     // int ans = knapsack(k,n);
-    
     memset(cek, false, sizeof(cek));
 
+    // cek maks capacity
     int maxval = 0, curcap = 0;
     for (int i = 0; i <= n; i++){
         int val = knapsack(1,i);
@@ -46,6 +47,7 @@ int main () {
         }
     }
 
+    // backtracking
     int best = curcap;
     for (int i = 1; i <= k; i++) {
         int valtake = h[i]+knapsack(i+1, best-w[i]);

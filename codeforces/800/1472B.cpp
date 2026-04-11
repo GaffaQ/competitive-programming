@@ -25,7 +25,6 @@ int main () {
         }
 
         int target = sum/2;
-        // cout << n << sum;
         vector<bool> dp(target+1, false);
         dp[0] = true;
         for (int i = 0; i < n; i++) {
