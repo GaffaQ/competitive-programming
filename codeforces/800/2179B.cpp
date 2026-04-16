@@ -49,32 +49,21 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    ll n,c,d,minz=LLONG_MAX; cin >> n >> c >> d;
-
-    vl arr(n*n);
-    fr(i,n*n) {
-        cin >> arr[i];
-        minz = min(minz,arr[i]);
+    ll n; cin >> n;
+    vl arr(n+1);
+    frr(i,n)cin >> arr[i];
+    ll sum = 0;
+    frr(i,n-1){
+        sum += abs(arr[i]-arr[i+1]);
     }
 
-    unordered_map<ll, ll> freq;
-    for (auto x : arr) freq[x]++;
+    ll ans = min(sum-abs(arr[1]-arr[2]), sum-abs(arr[n]-arr[n-1]));
 
-    bool cek = true;
-
-    for (int i = 0; i < n && cek; i++) {
-        fr(j,n) {
-            ll val = minz + i*c + j*d;
-            if(freq[val] == 0){
-                cek = false;
-                break;
-            }
-
-            freq[val]--;
-        }
+    for (ll i = 2; i < n; i++) {
+        ans = min(ans, sum-abs(arr[i-1]-arr[i])-abs(arr[i+1]-arr[i])+abs(arr[i-1]-arr[i+1]));
     }
 
-    cout << (cek ? "YES" : "NO") << endl;
+    cout << ans << endl;
 
 }
 
