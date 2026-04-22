@@ -49,25 +49,24 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    ll n; cin >> n;
-    ll bill[5] = {1,5,10,20,100};
-    vl dp(n+5, 1e18);
-    dp[0] = 0;
-    
-    frr(i,n){
-        ll best = 1e18;
-        for (auto b : bill) {
-            if (i >= b){
-                if (dp[i-b] != 1e18) {
-                    best = min(best, dp[i-b]+1);
-                }
-            }
-        }
-        debug(best);
-        dp[i] = best;
+    ll n,m; cin >> n >> m;
+    ll cnt = 0;
+    vl song;
+    fr(i,n){
+
+        ll c,t; cin >> c >> t;
+
+        cnt += c*t;
+
+        song.pb(cnt);
     }
 
-    cout << dp[n] << endl;
+    fr(i,m){
+        ll x; cin >> x;
+        auto it = lower_bound(song.begin(), song.end(), x);
+        ll ans = it-song.begin();
+        cout << ans+1 << endl;
+    }
 
 }
 

@@ -49,25 +49,21 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    ll n; cin >> n;
-    ll bill[5] = {1,5,10,20,100};
-    vl dp(n+5, 1e18);
-    dp[0] = 0;
-    
-    frr(i,n){
-        ll best = 1e18;
-        for (auto b : bill) {
-            if (i >= b){
-                if (dp[i-b] != 1e18) {
-                    best = min(best, dp[i-b]+1);
-                }
-            }
-        }
-        debug(best);
-        dp[i] = best;
+    int a,b,x1,y1,x2,y2; cin >> a >> b >> x1 >> y1 >> x2 >> y2;
+
+    int cnt = 0;
+    set<pll> k,q;
+    vector<pll> arah = {{a,b},{a,-b},{-a,b},{-a,-b},{b,a},{-b,a},{b,-a},{-b,-a}};
+    for (auto [zx,zy] : arah) {
+        k.insert({x1+zx, y1+zy});
+        q.insert({x2+zx, y2+zy});
     }
 
-    cout << dp[n] << endl;
+    for (auto x : k) {
+        if (q.count(x)) cnt++;
+    }
+
+    cout << cnt << endl;
 
 }
 
@@ -75,7 +71,7 @@ int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

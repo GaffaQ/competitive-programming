@@ -49,25 +49,55 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    ll n; cin >> n;
-    ll bill[5] = {1,5,10,20,100};
-    vl dp(n+5, 1e18);
-    dp[0] = 0;
-    
-    frr(i,n){
-        ll best = 1e18;
-        for (auto b : bill) {
-            if (i >= b){
-                if (dp[i-b] != 1e18) {
-                    best = min(best, dp[i-b]+1);
-                }
-            }
-        }
-        debug(best);
-        dp[i] = best;
+    int n,k,even=0; cin >> n >> k;
+    vi arr(n);
+    bool flag = false;
+    fr(i,n){ 
+        cin >> arr[i];
+        if (arr[i]%2==0) even++;
+        if (arr[i]%k==0) flag = true;
     }
 
-    cout << dp[n] << endl;
+    if (flag) {
+        cout << 0 << endl;
+        return;
+    }
+
+    if (k == 1) {
+        cout << 0 << endl;
+        return;
+    }
+
+    if (k == 4) {
+        if (flag) {
+            cout << 0 << endl;
+            return;
+        }
+        if (n == 1){
+            if (flag) cout << 0 <<endl;
+            else cout << abs(4-(n%k)) << endl;
+            return;
+        }
+
+        int minz = INT_MAX;
+        minz = max(0,2-even);
+        fr(i,n){
+            int md = arr[i]%k;
+            int ab = abs(k-md);
+            minz = min(minz, ab);
+        }
+        cout << minz << endl;
+        return;
+    }
+
+    int mins = INT_MAX;
+    fr(i,n){
+        int md = arr[i]%k;
+        int ab = abs(k-md);
+        if (arr[i] == k) mins = 0;
+        else mins = min(mins, ab);
+    }
+    cout << mins << endl;
 
 }
 
@@ -75,7 +105,7 @@ int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

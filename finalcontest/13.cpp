@@ -51,9 +51,9 @@ void solve(){
     
     string s; cin >> s;
     int len = s.length();
-    queue<int> q;
+    queue<char> q;
     fr(i,len){
-        q.push(s[i]-'0');
+        q.push(s[i]);
     }
 
     bool flag = true;
@@ -64,7 +64,7 @@ void solve(){
         return;
     }
     for(auto x : a){
-        if (q.front() != x-'0') {
+        if (q.front() != x) {
             flag = false;
             break;
         }else{

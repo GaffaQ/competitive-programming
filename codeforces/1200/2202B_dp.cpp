@@ -49,25 +49,43 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    ll n; cin >> n;
-    ll bill[5] = {1,5,10,20,100};
-    vl dp(n+5, 1e18);
-    dp[0] = 0;
-    
-    frr(i,n){
-        ll best = 1e18;
-        for (auto b : bill) {
-            if (i >= b){
-                if (dp[i-b] != 1e18) {
-                    best = min(best, dp[i-b]+1);
-                }
-            }
-        }
-        debug(best);
-        dp[i] = best;
-    }
+    ll n;cin>>n;
+    string s;cin>>s; s='0'+s;
+    bool f = 1;
 
-    cout << dp[n] << endl;
+    for(int i=n, j=i-1; i>1; i-=2, j-=2){
+        if(s[i]==s[j] && s[i]!='?'){
+            f=0;
+            break;
+        }
+    }
+    if(n&1 && s[1]=='b') f=0;
+    cout<<(f? "YES\n":"NO\n");
+    
+    // if (n%2==1 && s[0]!='a'){
+    //     cout << "no" << endl;
+    //     return;
+    // }
+    // if (n%2==1){
+    //     for (ll i = 1; i*2+1<=n;i++) {
+    //         if (s[i*2-1] != s[i*2]){
+    //             cout << "yes" << endl;
+    //             return;
+    //         }
+    //     }
+    // }else{
+    //     for (int i = 1; 2*i-1 <= n; i++) {
+    //         if (s[2*i-1] != s[2*i-2]) {
+    //             debug(s[2*i-1]);
+    //             debug(s[2*i-2]);
+    //             cout << "yes" << endl;
+    //             return;
+    //         }
+    //     }
+    // }
+
+    // cout << "no" << endl;
+
 
 }
 
@@ -75,7 +93,7 @@ int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

@@ -47,27 +47,40 @@ ll kpk(ll a, ll b){
     return a / fpb(a,b) * b;
 }
 
-void solve(){
+int v[101], w[101];
+int n;
+
+int rek(int i, int wa){
     
-    ll n; cin >> n;
-    ll bill[5] = {1,5,10,20,100};
-    vl dp(n+5, 1e18);
-    dp[0] = 0;
-    
-    frr(i,n){
-        ll best = 1e18;
-        for (auto b : bill) {
-            if (i >= b){
-                if (dp[i-b] != 1e18) {
-                    best = min(best, dp[i-b]+1);
-                }
-            }
-        }
-        debug(best);
-        dp[i] = best;
+    if (i==n) return 0;
+    int maks = 0;
+
+    if (wa >= w[i]) {
+        int val1 = rek(i+1, wa-w[i])+v[i];
+        int val2 = rek(i+1, wa);
+        maks = max(val1,val2);
+    }else{
+        int val2 = rek(i+1, wa);
+        maks = val2;
     }
 
-    cout << dp[n] << endl;
+    debug(maks);
+
+    return maks;
+
+}
+
+void solve(){
+    int wt; cin >> n >> wt;
+
+    fr(i,n){
+        cin >> w[i] >> v[i];
+    }
+
+    int ans = rek(0, wt);
+    cout << ans << endl;
+
+
 
 }
 

@@ -49,33 +49,31 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    ll n; cin >> n;
-    ll bill[5] = {1,5,10,20,100};
-    vl dp(n+5, 1e18);
-    dp[0] = 0;
-    
-    frr(i,n){
-        ll best = 1e18;
-        for (auto b : bill) {
-            if (i >= b){
-                if (dp[i-b] != 1e18) {
-                    best = min(best, dp[i-b]+1);
-                }
-            }
+    string s; cin >> s;
+
+    vl res;
+    ll mins = 9;
+
+    for (ll i = s.length()-1; i >= 0; i--) {
+        int d = s[i]-'0';
+        if (d > mins) {
+            res.pb(min(d+1,9));
+        }else{
+            mins = d;
+            res.pb(d);
         }
-        debug(best);
-        dp[i] = best;
     }
 
-    cout << dp[n] << endl;
-
+    sort(all(res));
+    for(auto x : res) cout << x;
+    cout << endl;
 }
 
 int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

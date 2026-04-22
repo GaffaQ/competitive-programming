@@ -48,26 +48,28 @@ ll kpk(ll a, ll b){
 }
 
 void solve(){
-    
     ll n; cin >> n;
-    ll bill[5] = {1,5,10,20,100};
-    vl dp(n+5, 1e18);
-    dp[0] = 0;
-    
-    frr(i,n){
-        ll best = 1e18;
-        for (auto b : bill) {
-            if (i >= b){
-                if (dp[i-b] != 1e18) {
-                    best = min(best, dp[i-b]+1);
-                }
-            }
+    vl arr(n+1);
+    frr(i,n) cin >> arr[i];
+
+    for (ll i = 2; i <= n-1; i++) {
+        ll cnt = arr[i-1];
+        if(cnt == 0) continue;
+        if (arr[i] < 2*cnt || arr[i+1] < cnt) {
+            cout << "NO" << endl;
+            return;
         }
-        debug(best);
-        dp[i] = best;
+
+        arr[i-1] -= cnt;
+        arr[i] -= 2*cnt;
+        arr[i+1] -= cnt;
     }
 
-    cout << dp[n] << endl;
+    if (arr[n] != 0 || arr[n-1] != 0) {
+        cout << "NO" <<endl;
+    } else {
+        cout << "YES" <<endl;
+    }
 
 }
 
@@ -75,7 +77,7 @@ int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

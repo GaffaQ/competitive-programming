@@ -49,25 +49,18 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    ll n; cin >> n;
-    ll bill[5] = {1,5,10,20,100};
-    vl dp(n+5, 1e18);
-    dp[0] = 0;
-    
-    frr(i,n){
-        ll best = 1e18;
-        for (auto b : bill) {
-            if (i >= b){
-                if (dp[i-b] != 1e18) {
-                    best = min(best, dp[i-b]+1);
-                }
-            }
+    string s; cin >> s;
+    ll len = s.length();
+
+    int diff = 0;
+    frr(i,len-1){
+        if (s[i-1]==s[i]) {
+            diff++;
         }
-        debug(best);
-        dp[i] = best;
     }
 
-    cout << dp[n] << endl;
+    if(diff>2) no
+    else yes
 
 }
 
@@ -75,7 +68,7 @@ int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

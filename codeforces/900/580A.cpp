@@ -49,25 +49,24 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    ll n; cin >> n;
-    ll bill[5] = {1,5,10,20,100};
-    vl dp(n+5, 1e18);
-    dp[0] = 0;
-    
-    frr(i,n){
-        ll best = 1e18;
-        for (auto b : bill) {
-            if (i >= b){
-                if (dp[i-b] != 1e18) {
-                    best = min(best, dp[i-b]+1);
-                }
-            }
+    int n; cin >> n;
+    vi arr(n);
+    fr(i,n) cin >> arr[i];
+
+    int maks = INT_MIN, temp=1;
+    frr(i,n-1){
+        if (arr[i-1] <= arr[i]) {
+            temp++;
+            
+        }else{
+            temp=1;
         }
-        debug(best);
-        dp[i] = best;
+        maks = max(maks,temp);
     }
 
-    cout << dp[n] << endl;
+    maks = max(maks,temp);
+
+    cout << maks << endl;
 
 }
 
