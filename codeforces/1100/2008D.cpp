@@ -48,31 +48,42 @@ ll kpk(ll a, ll b){
 }
 
 void solve(){
-    int n,y=0; cin >> n;
-    int dp[n+1],arr[n+1];
+    
+    ll n; cin >> n;
 
-    fr(i,n) {
-        cin >> arr[i];
-        if(arr[i] == 1) y++;
+    ll arr[n+1];
+    ll ans[n+1];
+    bool visited[n+1];
+    frr(i,n){
+        cin>>arr[i];
+        ans[i]=0;
+    }
+    string s; cin >> s;
+
+    //cek size
+    frr(i,n){
+        int cnt=0;
+        int idx = i;
+        while(!visited[idx]){
+            if(s[i]=='0')ans[i]+=i;
+            visited[idx] = true;
+            idx = arr[arr[i]];
+        }
+        
     }
 
-    dp[0] = (arr[0] == 0 ? 1 : -1);
-    int maks=dp[0];
-    frr(i,n-1){
-        int val = (arr[i] == 0 ? 1 : -1);
-        dp[i] = max(val, dp[i-1]+val);
-        maks = max(maks, dp[i]);
+    frr(i,n){
+        cout << ans[i] << " ";
     }
+    cout << endl;
 
-    if(maks<=0) cout << y-1 << endl;
-    else cout << y+maks << endl;
 }
 
 int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

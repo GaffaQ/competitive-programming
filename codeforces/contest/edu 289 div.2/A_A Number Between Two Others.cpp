@@ -48,13 +48,10 @@ ll kpk(ll a, ll b){
 }
 
 void solve() {
-    long long x, y;
-    cin >> x >> y;
-
-    long long k = y / x;
-
-    if (k == 2) cout << "NO\n";
-    else cout << "YES\n";
+    ll x, y;cin >> x >> y;
+    ll k = y / x;
+    if (k == 2) no
+    else yes
 }
 
 int main(){

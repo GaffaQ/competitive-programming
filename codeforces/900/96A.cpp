@@ -35,6 +35,7 @@ const int MOD = 1e9+7;
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr << #x << " = " << x << endl;
 #else
+
 #define debug(x)
 #endif
 
@@ -48,24 +49,19 @@ ll kpk(ll a, ll b){
 }
 
 void solve(){
-    int n,y=0; cin >> n;
-    int dp[n+1],arr[n+1];
+    
+    string s; cin >> s;
+    int same = 1,ans=0;
+    frr(i,s.length()-1){
+        if(s[i] == s[i-1]) same++;
+        else same=1;
 
-    fr(i,n) {
-        cin >> arr[i];
-        if(arr[i] == 1) y++;
+        ans = max(ans,same);
     }
 
-    dp[0] = (arr[0] == 0 ? 1 : -1);
-    int maks=dp[0];
-    frr(i,n-1){
-        int val = (arr[i] == 0 ? 1 : -1);
-        dp[i] = max(val, dp[i-1]+val);
-        maks = max(maks, dp[i]);
-    }
+    if (ans>=7) yes
+    else no    
 
-    if(maks<=0) cout << y-1 << endl;
-    else cout << y+maks << endl;
 }
 
 int main(){

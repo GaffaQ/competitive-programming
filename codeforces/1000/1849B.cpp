@@ -57,10 +57,10 @@ void solve(){
         ll x; cin >> x;
         ll divd = x % k;
         if (divd == 0) divd = k;
-        arr.pb({-divd,i+1});
+        arr.pb({divd,i+1});
     }
 
-    sort(all(arr));
+    sort(rall(arr));
 
     for (auto x : arr) {
         cout << x.second << " ";

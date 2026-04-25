@@ -65,9 +65,7 @@ void solve(){
         ll kiri = (pref[l]-pref[0]) % q;
         ll kanan = (pref[r]-pref[l]) % q;
         ll tot = kiri+kanan;
-        
         ans = max(ans, tot);
-       
         l++;
     }
 

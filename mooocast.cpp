@@ -48,24 +48,9 @@ ll kpk(ll a, ll b){
 }
 
 void solve(){
-    int n,y=0; cin >> n;
-    int dp[n+1],arr[n+1];
+    
 
-    fr(i,n) {
-        cin >> arr[i];
-        if(arr[i] == 1) y++;
-    }
-
-    dp[0] = (arr[0] == 0 ? 1 : -1);
-    int maks=dp[0];
-    frr(i,n-1){
-        int val = (arr[i] == 0 ? 1 : -1);
-        dp[i] = max(val, dp[i-1]+val);
-        maks = max(maks, dp[i]);
-    }
-
-    if(maks<=0) cout << y-1 << endl;
-    else cout << y+maks << endl;
+    
 }
 
 int main(){

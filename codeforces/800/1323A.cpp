@@ -48,31 +48,49 @@ ll kpk(ll a, ll b){
 }
 
 void solve(){
-    int n,y=0; cin >> n;
-    int dp[n+1],arr[n+1];
+    
+    int n; cin >> n;
 
-    fr(i,n) {
+    int arr[n],gen=0,gan=0,ans;
+    vi yeu;
+
+    fr(i,n){
         cin >> arr[i];
-        if(arr[i] == 1) y++;
+        if(arr[i]%2==0) {
+            gen++;
+            ans = i+1;
+        }else{
+            gan++;
+            yeu.pb(i+1);
+        }
     }
 
-    dp[0] = (arr[0] == 0 ? 1 : -1);
-    int maks=dp[0];
-    frr(i,n-1){
-        int val = (arr[i] == 0 ? 1 : -1);
-        dp[i] = max(val, dp[i-1]+val);
-        maks = max(maks, dp[i]);
+    if(gen==0 && gan==1){
+        cout << "-1" << endl;
+        return;
     }
 
-    if(maks<=0) cout << y-1 << endl;
-    else cout << y+maks << endl;
+    if (gen>=1){
+        cout << 1 << endl;
+        cout << ans << endl;
+        return;
+    }
+
+    if (gan>=2){
+        cout << 2 << endl;
+        fr(i,2){
+            cout << yeu[i] << " ";
+        }
+        cout << endl;
+    }
+
 }
 
 int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }
