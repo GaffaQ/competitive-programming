@@ -26,6 +26,8 @@ using ll = long long;
 using ld = long double;
 using pii = pair<int,int>;
 using pll = pair<ll, ll>;
+using vb = vector<bool>;
+using vc = vector<char>;
 using vi = vector<int>;
 using vl = vector<ll>;
 
@@ -50,30 +52,35 @@ ll kpk(ll a, ll b){
 void solve(){
     
     ll n; cin >> n;
+    vl arr(n),ans(n);
+    vb vi(n);
 
-    ll arr[n+1];
-    ll ans[n+1];
-    bool visited[n+1];
-    frr(i,n){
+    fr(i,n){
         cin>>arr[i];
-        ans[i]=0;
+        vi[i] = false;
     }
+
     string s; cin >> s;
 
-    //cek size
-    frr(i,n){
-        int cnt=0;
-        int idx = i;
-        while(!visited[idx]){
-            if(s[i]=='0')ans[i]+=i;
-            visited[idx] = true;
-            idx = arr[arr[i]];
+    fr(i,n){
+        ll cnt=0;
+        vl temp;
+        ll idx = i;
+        while(!vi[idx]){
+            if (s[idx] == '0') cnt++;
+            vi[idx] = true;
+            temp.pb(idx);
+            idx = arr[idx]-1;
         }
-        
+
+        for (auto zz : temp) {
+            ans[zz] = cnt;
+        }
+        // cout << endl;
     }
 
-    frr(i,n){
-        cout << ans[i] << " ";
+    for (auto x : ans){
+        cout << x << " ";
     }
     cout << endl;
 
