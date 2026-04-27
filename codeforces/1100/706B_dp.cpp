@@ -38,31 +38,30 @@ ll lcm(ll a, ll b){
 }
 
 void solve(){
-    int n; cin >> n;
-    vi shop(n);
-    fr(i,n) cin >> shop[i];
-    sort(all(shop));
-    int q; cin >> q;
+    ll n; cin >> n;
+    vl arr(n);
+    fr(i,n)cin>>arr[i];
+    sort(all(arr));
+    ll q; cin >> q;
     while(q--){
-        int m; cin >> m;
-        int l=0, r=n-1, high=-1;
-        while (l <= r){
+        ll target; cin >> target;
+        int l=0,r=n-1,ans=0;
+        while(l<=r){
             int mid = (l+r)/2;
-            // if (shop[mid]==m) {
-            //     high = mid;
+            // if (arr[mid]==target){
+            //     ans=mid+1;
             //     break;
             // }
-            if (m >= shop[mid]) {
-                high = mid;
-                l = mid+1;
+            if (arr[mid]>target) {
+                r=mid-1;
+                ans=mid-1+1;
             }else{
-                high = mid-1;
-                r = mid-1;
+                l = mid+1;
+                ans=mid+1;
             }
-            // cout << "mid: " << mid << " " << " l r: " << l << " " << r;
         }
-        if (high != -1) cout << high+1 << endl;
-        else cout << 0 << endl;
+
+        cout << ans << endl;
     }
 }
 

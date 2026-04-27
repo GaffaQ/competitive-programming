@@ -41,7 +41,7 @@ void solve(){
     
     ll n; cin >> n;
     const int MAX = 100005;
-    vector<ll> arr(MAX, 0), dp(MAX, 0);
+    vector<ll> arr(n+1, 0), dp(n+1, 0);
 
     for (ll i = 0; i < n; i++) {
         ll x; cin >> x;
@@ -51,11 +51,11 @@ void solve(){
     dp[0] = 0;
     dp[1] = arr[1];
 
-    for (ll i = 2; i < MAX; i++) {
+    for (ll i = 2; i <= n; i++) {
         dp[i] = max(dp[i-1], dp[i-2] + arr[i] * i);
     }
 
-    cout << dp[MAX-1] << endl;
+    cout << dp[n] << endl;
 
 }
 
