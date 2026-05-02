@@ -47,18 +47,99 @@ ll kpk(ll a, ll b){
     return a / fpb(a,b) * b;
 }
 
-void solve(){
-    
-    int n;cin>>n;
-    vi arr(n);
-    fr(i,n)cin>>arr[i];
 
-    int ans=0;
-    fr(i,n-1){
-        int z=arr[i],zz=arr[i+1];
-        if(abs(z-zz)==fpb(z,zz))ans++;
+bool isab(char z){
+    if (z == 'A' || z == 'B')return true;
+    else return false;
+}
+
+void solve(){
+
+    string s; cin >> s;
+    int len = s.length();
+
+    bool ans = false;
+
+    for (int i = 0; i < len-1; i++) {
+        if (s[i] == 'A' && s[i+1] == 'B'){
+            for (int j = i+2; j < len-1; j++) {
+                if (s[j] == 'B' && s[j+1] == 'A') {
+                    ans = true;
+                }
+            }
+        }
     }
-    cout<<ans<<endl;
+
+    for (int i = 0; i < len-1; i++) {
+        if (s[i] == 'B' && s[i+1] == 'A'){
+            for (int j = i+2; j < len-1; j++) {
+                if (s[j] == 'A' && s[j+1] == 'B') {
+                    ans = true;
+                }
+            }
+        }
+    }
+
+    if(ans)yes
+    else no
+
+}
+
+void _solve(){
+    
+    string s; cin>>s;
+    int len = s.length();
+    vector<bool> cek(len, false);
+
+    bool overlap=false, ab=false, ba=false,ans=false;
+    int cnt=0, cnz=0;
+    for(int i = 1; i < len; i++){
+        if (isab(s[i])&&isab(s[i-1])) {
+            if (s[i]==s[i-1]){
+                cek[i-1]=true;
+                continue;
+            }else{
+                if (s[i-1] == 'A' && s[i] == 'B')ab=true;
+                else ba = true;
+                if (cek[i-1]==true) {
+                    if (s[i-1] == 'A' && s[i] == 'B')ab=false;
+                    else ba = false;
+                }else{
+                    cek[i]=true;
+                    cek[i-1]=true;
+                }
+                
+                // if (cek[i-1]==true){
+                //     overlap=true;
+                //     cnz++;
+                // }
+                // cnt++;
+                // cek[i]=true;
+                // cek[i-1]=true;
+            }
+        }
+    }
+
+    // debug(cnt);
+    // debug(ba);
+    // if (cnt>1)ans=false;
+
+    if(ab&&ba)yes
+    else no
+
+    // if (ab && ba){
+    //     if (overlap){
+    //         if(cnt>2 && cnz>2){
+    //             yes;
+    //         }else{
+    //             no;
+    //         }
+    //     }else{
+    //         yes;
+    //     }
+    // }else{
+    //     no;
+    // }
 
 }
 

@@ -49,16 +49,13 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    int n;cin>>n;
-    vi arr(n);
-    fr(i,n)cin>>arr[i];
-
-    int ans=0;
-    fr(i,n-1){
-        int z=arr[i],zz=arr[i+1];
-        if(abs(z-zz)==fpb(z,zz))ans++;
+    int x,y;cin>>x>>y;
+    if (x%2==1 && y%2==1){
+        no;
+        return;
     }
-    cout<<ans<<endl;
+
+    yes;
 
 }
 
@@ -66,7 +63,7 @@ int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

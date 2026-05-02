@@ -48,25 +48,35 @@ ll kpk(ll a, ll b){
 }
 
 void solve(){
-    
-    int n;cin>>n;
-    vi arr(n);
-    fr(i,n)cin>>arr[i];
+    int n; cin >> n;
 
-    int ans=0;
-    fr(i,n-1){
-        int z=arr[i],zz=arr[i+1];
-        if(abs(z-zz)==fpb(z,zz))ans++;
+    vl arr(n);
+    fr(i,n) cin >> arr[i];
+
+    vl A, B, C, D;
+
+    fr(i,n){
+        bool has2 = (arr[i] % 2 == 0);
+        bool has3 = (arr[i] % 3 == 0);
+
+        if (has2 && has3) C.pb(arr[i]); 
+        else if (has2) A.pb(arr[i]);      
+        else if (has3) B.pb(arr[i]);      
+        else D.pb(arr[i]);               
     }
-    cout<<ans<<endl;
 
+    for (auto x : A) cout << x << " ";
+    for (auto x : D) cout << x << " ";
+    for (auto x : B) cout << x << " ";
+    for (auto x : C) cout << x << " ";
+    cout << endl;
 }
 
 int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

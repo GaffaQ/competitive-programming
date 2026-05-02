@@ -47,18 +47,34 @@ ll kpk(ll a, ll b){
     return a / fpb(a,b) * b;
 }
 
+int cek(int z){
+    if(z>0)return 1;
+    else return 0;
+}
+
 void solve(){
     
-    int n;cin>>n;
-    vi arr(n);
+    ll n; cin >> n;
+    vl arr(n),dp(n);
+
     fr(i,n)cin>>arr[i];
 
-    int ans=0;
-    fr(i,n-1){
-        int z=arr[i],zz=arr[i+1];
-        if(abs(z-zz)==fpb(z,zz))ans++;
+    ll cur,ans=0;
+    for(int i = 0; i < n; i++){
+        cur = arr[i];
+        ll j = i;
+        while (j < n && cek(arr[i])==cek(arr[j])) {
+            cur = max(cur,arr[j]);
+            j++;
+            // debug(cur);
+        }
+        ans += cur;
+        i = j-1;
+        // debug(ans);
     }
-    cout<<ans<<endl;
+
+    cout << ans << endl;
+    // debug(" ");
 
 }
 
@@ -66,7 +82,7 @@ int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }
