@@ -58,30 +58,38 @@ void solve(){
     string s; cin >> s;
     int len = s.length();
 
-    bool ans = false;
+    vector<bool> dp1(len,false),dp2(len,false);
 
-    for (int i = 0; i < len-1; i++) {
-        if (s[i] == 'A' && s[i+1] == 'B'){
-            for (int j = i+2; j < len-1; j++) {
-                if (s[j] == 'B' && s[j+1] == 'A') {
-                    ans = true;
-                }
-            }
+    //AB
+    for (int i = 1; i < len; i++) {
+        dp1[i]=dp1[i-1];
+        if(s[i]=='B' && s[i-1]=='A'){
+            dp1[i]=true;
+        }
+    }
+
+    //BA
+    for (int i = 1; i < len; i++) {
+        dp2[i]=dp2[i-1];
+        if(s[i]=='A' && s[i-1]=='B'){
+            dp2[i]=true;
         }
     }
 
     for (int i = 0; i < len-1; i++) {
-        if (s[i] == 'B' && s[i+1] == 'A'){
-            for (int j = i+2; j < len-1; j++) {
-                if (s[j] == 'A' && s[j+1] == 'B') {
-                    ans = true;
-                }
+        if (s[i]=='A'&&s[i+1]=='B'){
+            if (i-1>=0 && dp2[i-1]) {
+                yes; return;
+            }
+        }
+        if (s[i]=='B'&&s[i+1]=='A'){
+            if (i-1>=0 && dp1[i-1]) {
+                yes; return;
             }
         }
     }
 
-    if(ans)yes
-    else no
+    no
 
 }
 
