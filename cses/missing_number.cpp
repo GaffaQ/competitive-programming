@@ -8,15 +8,16 @@ using namespace std;
 int main () {
     bismillah
     
-    int n; cin >> n;
-    vector<bool> v(n+1, true);
-    for (int i = 1; i <= n; i++) {
-        int x; cin >> x;
-        v[x] = false;
+    int n; cin >> n; 
+    vector<int> arr(n+1, 0);
+
+    for(int i=1;i<=n;i++){
+        int x;cin>>x;
+        arr[x]=1;
     }
 
-    for (int i = 1; i <= n; i++){
-        if (v[i]) cout << i << endl;
+    for(int i=1;i<=n;i++){
+        if(arr[i]==0)cout<<i<<endl;
     }
     
 }
