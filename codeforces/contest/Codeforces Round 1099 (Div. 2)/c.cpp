@@ -47,39 +47,72 @@ ll kpk(ll a, ll b){
     return a / fpb(a,b) * b;
 }
 
-string seq[4] = {"00", "25", "50", "75"};
-
 void solve(){
+    ll n;
+    cin >> n;
+    vl a(n);
+    vector<pll> zz;
     
-    string s;cin>>s;
-
-    ll ans=LLONG_MAX;
-    for(auto x:seq){
-        ll tempans=0, ptr=s.length();
-        while(ptr>0 && s[ptr]!=x[1]){
-            ptr--;
-            tempans++;
+    fr(i, n){
+        cin >> a[i];
+        ll curr = a[i];
+        ll dist = 0;
+        
+        if(curr == 1){
+            zz.pb({1, 0});
+            zz.pb({2, 1});
+            continue;
         }
-        ptr--;
-
-        while(ptr>0 && s[ptr]!=x[0]){
-            ptr--;
-            tempans++;
+        if(curr == 2){
+            zz.pb({2, 0});
+            zz.pb({1, 1});
+            continue;
         }
-
-        ans=min(ans,tempans);
+        
+        while(curr > 2){
+            zz.pb({curr, dist});
+            if(curr % 2 == 0) curr /= 2;
+            else curr++;
+            dist++;
+        }
+        
+        zz.pb({2, dist});
+        zz.pb({1, dist + 1});
     }
+    
+    sort(all(zz));
+    
+    ll total = INF;
+    ll m = zz.size();
+    ll i = 0;
+    
+    while(i < m){
+        ll target = zz[i].fi;
+        ll cnt = 0;
+        ll sum = 0;
+        
+        while(i < m && zz[i].fi == target){
+            cnt++;
+            sum += zz[i].se;
+            i++;
+        }
 
-    cout<<ans-1<<endl;
-
+        if(cnt == n){
+            total = min(total, sum);
+        }
+    }
+    
+    cout << total << endl;
 }
 
 int main(){
     bismillah;
 
     int t = 1;
-    cin >> t;
+    cin >> t; 
     while(t--){
         solve();
     }
+    
+    return 0;
 }

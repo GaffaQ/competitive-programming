@@ -47,38 +47,15 @@ ll kpk(ll a, ll b){
     return a / fpb(a,b) * b;
 }
 
-string seq[4] = {"00", "25", "50", "75"};
-
 void solve(){
     
-    string s;cin>>s;
-
-    ll ans=LLONG_MAX;
-    for(auto x:seq){
-        ll tempans=0, ptr=s.length();
-        while(ptr>0 && s[ptr]!=x[1]){
-            ptr--;
-            tempans++;
-        }
-        ptr--;
-
-        while(ptr>0 && s[ptr]!=x[0]){
-            ptr--;
-            tempans++;
-        }
-
-        ans=min(ans,tempans);
-    }
-
-    cout<<ans-1<<endl;
-
 }
 
 int main(){
     bismillah;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while(t--){
         solve();
     }

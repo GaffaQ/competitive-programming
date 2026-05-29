@@ -25,6 +25,7 @@ int main () {
     int q;cin>>q;
     while(q--){
         int x;cin>>x;
+        
         cout << lower_bound(pref, pref+n, x)-pref+1 << "\n";
     }
 
