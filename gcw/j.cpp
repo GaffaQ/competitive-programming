@@ -19,8 +19,8 @@ using namespace std;
 #define se second
 #define no cout << "NO" << endl;
 #define yes cout << "YES" << endl;
-#define maxx(a,b,c) max((a), max((b),(c))
-#define minn(a,b,c) min((a), min((b),(c))
+#define maxx(a,b,c) max((a), max((b),(c)))
+#define minn(a,b,c) min((a), min((b),(c)))
 
 using ll = long long;
 using ld = long double;
@@ -48,51 +48,27 @@ ll kpk(ll a, ll b){
 }
 
 void solve(){
-    
-    ll n,k; cin >> n >> k;
-    vector<pll> asr(n);
-    ll tot=0;
-    for(int i=0;i<n;i++) {
-        cin>>asr[i].first>>asr[i].second;
-        tot+=asr[i].second;
-    }
-    if(tot<k){
-        cout<<-1<<endl;
-        return;
-    }
+      ll n,m;cin>>n>>m;
+      vl bot(n);
+      fr(i,n)cin>>bot[i];
 
-    sort(all(asr));
+      vector<pll> kios(m);
+      fr(i,m)cin>>kios[i].fi>>kios[i].se;
 
-    vl pref(n+1,0);
-    fr(i,n){
-        pref[i+1]=pref[i]+asr[i].se;
-    }
+      sort(all(bot));
+      sort(all(kios));
 
-    ll l=0, r=1e9;
-    while(l<r){
-        ll mid=(l+r)/2;
-        
-        bool cek=false;
-        ll z=0;
-        fr(i,n){
-            while(asr[i].fi-asr[z].fi>2*mid){
-                z++;
+      vector<vl> dp(n+1, vl(m+1,0));
+
+      for (int i=1;i<=n;i++) {
+            for(int j=1;j<=m;j++){
+                  dp[i][j]=maxx(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]+kios[j-1].se-abs(kios[j-1].fi-bot[i-1]));
             }
-            if(pref[i+1]-pref[z]>=k){
-                cek=true;
-                break;
-            }
-        }
+      }
 
-        if(cek){
-            r=mid;
-        }else{
-            l=mid+1;
-        }
+      cout<<dp[n][m]<<endl;
 
-    }
 
-    cout << l << endl;
 }
 
 int main(){

@@ -49,50 +49,14 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    ll n,k; cin >> n >> k;
-    vector<pll> asr(n);
-    ll tot=0;
-    for(int i=0;i<n;i++) {
-        cin>>asr[i].first>>asr[i].second;
-        tot+=asr[i].second;
-    }
-    if(tot<k){
-        cout<<-1<<endl;
-        return;
-    }
+      int n;cin>>n;
+      ll ans = pow(2,n/2);
+      if(n%2==0){
+            cout<<ans<<endl;
+      }else{
+            cout<<0<<endl;
+      }
 
-    sort(all(asr));
-
-    vl pref(n+1,0);
-    fr(i,n){
-        pref[i+1]=pref[i]+asr[i].se;
-    }
-
-    ll l=0, r=1e9;
-    while(l<r){
-        ll mid=(l+r)/2;
-        
-        bool cek=false;
-        ll z=0;
-        fr(i,n){
-            while(asr[i].fi-asr[z].fi>2*mid){
-                z++;
-            }
-            if(pref[i+1]-pref[z]>=k){
-                cek=true;
-                break;
-            }
-        }
-
-        if(cek){
-            r=mid;
-        }else{
-            l=mid+1;
-        }
-
-    }
-
-    cout << l << endl;
 }
 
 int main(){
