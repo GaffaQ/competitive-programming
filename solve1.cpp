@@ -49,26 +49,37 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    int r,c;cin>>r>>c;
-    vector<vi> tabel(r,vi(c));
-    for(auto &row : tabel) for (auto &x : row) cin>>x;
-    
-    int best = INT_MIN;
-    for (int top = 0; top < r; top++){
-        vi temp(c,0);
-        for (int bot = top; bot < r; bot++){
-            for(int j = 0; j < c; j++) temp[j] += tabel[bot][j];
+    string s,ans=""; cin >> s;
+    int len = s.length();
 
-            int mx=temp[0], cur=temp[0];
-            for (int j = 1; j < c; j++) {
-                cur=max(temp[j], cur+temp[j]);
-                mx=max(cur,mx);
-            }
-            best=max(best,mx);
+    int besar,kecil;besar=kecil=0;
+    for (int i=len-1;i>=0;i--) {
+        if(s[i]=='b'){
+            kecil++;
+            continue;
+        }else if(s[i]=='B'){
+            besar++;
+            continue;
         }
+
+        if (islower(s[i]) && kecil > 0){
+            kecil--;
+            continue;
+        }
+        if(isupper(s[i]) && besar > 0){
+            besar--;
+            continue;
+        }
+
+        ans += s[i];
+        
     }
 
-    cout << best;
+    int lenans=ans.length();
+    for (int i = lenans-1; i>=0;i--) {
+        cout<<ans[i];
+    }
+    cout << endl;
 
 }
 
@@ -76,7 +87,7 @@ int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }
