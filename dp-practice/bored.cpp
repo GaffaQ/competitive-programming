@@ -48,29 +48,8 @@ ll kpk(ll a, ll b){
 }
 
 void solve(){
-
-    int n,m; cin >> n >> m;
-
-    vector<vi> table(n, vi(m));
-
-    bool cek=false;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cin >> table[i][j];
-            if (table[i][j] == 1 && (i == n-1 || j == m-1 || i == 0 || j == 0)) {
-                cek = true;
-            }
-        }
-    }
-
-    if (cek) {
-        cout << 2 << endl;
-    }else{
-        cout << 4 << endl;
-    }
-
-
+    
+    
 
 }
 

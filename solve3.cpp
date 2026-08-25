@@ -49,28 +49,66 @@ ll kpk(ll a, ll b){
 
 void solve(){
 
-    int n,m; cin >> n >> m;
+    int n; cin>>n;
 
-    vector<vi> table(n, vi(m));
-
-    bool cek=false;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cin >> table[i][j];
-            if (table[i][j] == 1 && (i == n-1 || j == m-1 || i == 0 || j == 0)) {
-                cek = true;
-            }
-        }
+    if(n==1){
+        cout<<1<<endl;
+        return;
+    }
+    if(n==2){
+        cout<<1<< " " << 2 << endl;
+        return;
     }
 
-    if (cek) {
-        cout << 2 << endl;
-    }else{
-        cout << 4 << endl;
-    }
+    vl arr(n,0);
+    arr[0]=2;
+    arr[n-1]=3;
+    arr[(n-1)/2]=1;
+
+    int cnt = 4;
+    for (int i = 0; i < n; i++)
+        if (arr[i] == 0) arr[i] = cnt++;
+
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << (i == n-1 ?'\n' : ' ');
 
 
+
+    // ll n;cin >> n;
+    // vl arr(n),gp;
+    // for(auto &x:arr){
+    //     cin>>x;
+    //     if(x%2==0)gp.pb(x);
+    // }
+
+    // // gnap
+    // if (gp.size()>=2){
+    //     cout<<gp[0]<<" "<<gp[1]<<endl;
+    //     return;
+    // }
+
+    // for (int i = 0; i < n; i++)
+    //     for (int j = i + 1; j < n; j++)
+    //         if (arr[j] % arr[i] % 2 == 0) {
+    //             cout << arr[i] << " " << arr[j] << endl;
+    //             return;
+    //         }
+
+    // cout << -1 << endl;
+
+    /*
+    4
+5
+1 3 4 5 6
+6
+2 3 5 7 11 13
+4
+2 3 13 37
+3
+17 117 1117
+
+
+    */
 
 }
 
@@ -78,7 +116,7 @@ int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

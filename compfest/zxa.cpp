@@ -19,8 +19,6 @@ using namespace std;
 #define se second
 #define no cout << "NO" << endl;
 #define yes cout << "YES" << endl;
-#define maxx(a,b,c) max((a), max((b),(c))
-#define minn(a,b,c) min((a), min((b),(c))
 
 using ll = long long;
 using ld = long double;
@@ -38,40 +36,55 @@ const int MOD = 1e9+7;
 #define debug(x)
 #endif
 
-ll fpb(ll a, ll b){
-    if(b == 0) return a;
-    return fpb(b, a % b);
-}
+ll n, k;
+vl a, p;
 
-ll kpk(ll a, ll b){
-    return a / fpb(a,b) * b;
+bool check(ll x){
+    // b[i] = +1 jika a[i] >= x, else -1 ; p = prefix sum
+    p[0] = 0;
+    frr(i, n) p[i] = p[i-1] + (a[i] >= x ? 1 : -1);
+
+    ll cnt = 0;
+    ll L = 1;          
+    ll mn = INF;        
+
+    frr(e, n){
+        if(e >= L + 2){            
+            mn = min(mn, p[e-3]);
+            if(p[e] > mn){          
+                cnt++;
+                if(cnt >= k) return true;
+                L = e + 1;
+                mn = INF;
+            }
+        }
+    }
+    return cnt >= k;
 }
 
 void solve(){
 
-    int n,m; cin >> n >> m;
+    cin >> n >> k;
+    a.assign(n+1, 0);
+    p.assign(n+1, 0);
+    frr(i, n) cin >> a[i];
 
-    vector<vi> table(n, vi(m));
+    vl vals(a.begin()+1, a.end());
+    sort(all(vals));
+    vals.erase(unique(all(vals)), vals.end());
 
-    bool cek=false;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cin >> table[i][j];
-            if (table[i][j] == 1 && (i == n-1 || j == m-1 || i == 0 || j == 0)) {
-                cek = true;
-            }
+    ll lo = 0, hi = (ll)vals.size() - 1, ans = vals[0];
+    while(lo <= hi){
+        ll mid = (lo + hi) / 2;
+        if(check(vals[mid])){
+            ans = vals[mid];
+            lo = mid + 1;
+        }else{
+            hi = mid - 1;
         }
     }
 
-    if (cek) {
-        cout << 2 << endl;
-    }else{
-        cout << 4 << endl;
-    }
-
-
-
+    cout << ans << endl;
 }
 
 int main(){

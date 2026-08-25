@@ -47,30 +47,66 @@ ll kpk(ll a, ll b){
     return a / fpb(a,b) * b;
 }
 
+bool inside(ll a,ll b,ll t){
+    ll top,bot;
+    top = max(a,b);
+    bot=min(a,b);
+    if (t >= bot && t <= top) return true;
+    return false; 
+}
+
 void solve(){
+    
+    ll n; cin >> n;
+    vl a(n+1);
+    for(auto &x : a){
+        cin>>x;
+    }
 
-    int n,m; cin >> n >> m;
+    ll q; cin >> q;
+    vl s(q),t(q);
+    for (ll i = 0; i < q; i++) {
+        cin>>s[i]>>t[i];
+        ld ans=(ld)s[i];
+        // debug("ans" + i);
+        for (ll j=s[i]; j <= n; j++) {
+            
 
-    vector<vi> table(n, vi(m));
+            if (j==n){
+                if(a[j]==t[i]){
+                    ans = s[i];
+                }else{
+                    ans=-1;
+                }
+                break;
+            }
 
-    bool cek=false;
+            // if (a[j]==t[i]){
+            //     cout << 
+            // }
+            
+            ll value1=a[j], value2=a[j+1]; 
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cin >> table[i][j];
-            if (table[i][j] == 1 && (i == n-1 || j == m-1 || i == 0 || j == 0)) {
-                cek = true;
+
+
+            // debug(ans);
+            if (inside(value1, value2, t[i])) {
+                ld pembagi= abs(value1-value2);
+                ld penyebut= abs(value1-t[i]);
+                ans += penyebut/pembagi;
+                // debug(pembagi);
+                // debug(penyebut);
+                // debug(value1);
+                // debug(value2);
+                break;
+            }else{
+                ans+=(ld)1;
             }
         }
+
+        if (ans == -1)cout << -1 << endl;
+        else cout << fixed << setprecision(6) << ans << endl;
     }
-
-    if (cek) {
-        cout << 2 << endl;
-    }else{
-        cout << 4 << endl;
-    }
-
-
 
 }
 

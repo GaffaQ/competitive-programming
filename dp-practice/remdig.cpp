@@ -48,29 +48,23 @@ ll kpk(ll a, ll b){
 }
 
 void solve(){
+    
+    ll n; cin >> n;
+    vl dp(n+5, 1e9);
+    dp[0]=0;
 
-    int n,m; cin >> n >> m;
+    for (int i = 1; i<=n; i++) {
 
-    vector<vi> table(n, vi(m));
-
-    bool cek=false;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cin >> table[i][j];
-            if (table[i][j] == 1 && (i == n-1 || j == m-1 || i == 0 || j == 0)) {
-                cek = true;
-            }
+        int num=i;
+        while(num!=0){
+            int dif=num%10;
+            dp[i]=min(dp[i],dp[i-dif]+1);
+            num/=10;
         }
+
     }
 
-    if (cek) {
-        cout << 2 << endl;
-    }else{
-        cout << 4 << endl;
-    }
-
-
+    cout << dp[n] << endl;
 
 }
 

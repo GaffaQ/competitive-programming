@@ -47,30 +47,30 @@ ll kpk(ll a, ll b){
     return a / fpb(a,b) * b;
 }
 
+/*
+FROG
+State: dp[i] berarti berapa biaya minimum dari batu 1 ke batu i, dengan hanya menggunakan 1/2 langkah (c).
+Transisition: dp[i] = min(dp[i],dp[i-c]+abs(arr[i-c]+arr[i]));
+Base: dp[1] = 0;
+dp() = 1e9;
+*/
+
 void solve(){
-
-    int n,m; cin >> n >> m;
-
-    vector<vi> table(n, vi(m));
-
-    bool cek=false;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cin >> table[i][j];
-            if (table[i][j] == 1 && (i == n-1 || j == m-1 || i == 0 || j == 0)) {
-                cek = true;
+    
+    int n, k;cin >> n;
+    vi arr(n),dp(n+1,1e9);
+    for (auto &x : arr) cin >> x;
+    
+    dp[0]=0;
+    for(int i = 1; i < n; i++){
+        for (int c = 1; c <= k; c++) {
+            if (i>=c){
+                dp[i] = min(dp[i],dp[i-c]+abs(arr[i-c]-arr[i]));
             }
         }
     }
 
-    if (cek) {
-        cout << 2 << endl;
-    }else{
-        cout << 4 << endl;
-    }
-
-
+    cout << dp[n-1] << endl;
 
 }
 

@@ -48,37 +48,29 @@ ll kpk(ll a, ll b){
 }
 
 void solve(){
+    
+    int a,b,c; cin >> a >> b >> c;
 
-    int n,m; cin >> n >> m;
+    vi arr(a+1,0);
 
-    vector<vi> table(n, vi(m));
-
-    bool cek=false;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cin >> table[i][j];
-            if (table[i][j] == 1 && (i == n-1 || j == m-1 || i == 0 || j == 0)) {
-                cek = true;
-            }
-        }
+    if (a*c < abs(b)) {
+        cout << -1 << endl;
+        return;
     }
 
-    if (cek) {
-        cout << 2 << endl;
+    if (abs(b)%c==0) {
+        cout << abs(b)/c << endl;
     }else{
-        cout << 4 << endl;
+        cout << abs(b)/c+1 << endl;
     }
-
-
-
+    
 }
 
 int main(){
     bismillah;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

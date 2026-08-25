@@ -47,32 +47,43 @@ ll kpk(ll a, ll b){
     return a / fpb(a,b) * b;
 }
 
-void solve(){
+const int MAXN=30;
+bool visited[MAXN];
+int memo[MAXN];
 
-    int n,m; cin >> n >> m;
+//top down
+int fib(int n){
+    if (visited[n]) return memo[n];
+    if (n==0)return 0;
+    if (n==1)return 1;
 
-    vector<vi> table(n, vi(m));
-
-    bool cek=false;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cin >> table[i][j];
-            if (table[i][j] == 1 && (i == n-1 || j == m-1 || i == 0 || j == 0)) {
-                cek = true;
-            }
-        }
-    }
-
-    if (cek) {
-        cout << 2 << endl;
-    }else{
-        cout << 4 << endl;
-    }
-
-
+    visited[n] = true;
+    return memo[n]=fib(n-1)+fib(n-2);
 
 }
+
+void solve() {
+
+    int n; cin >> n;
+    cout << fib(n) << endl;
+
+}
+
+// bottom up
+// void solve(){
+    
+//     int n; cin >> n;
+//     vl dp(n+5);
+//     dp[0]=0;
+//     dp[1]=1;
+
+//     for (int i = 2; i <= n; i++) {
+//         dp[i]=dp[i-1]+dp[i-2];
+//     }
+
+//     cout << dp[n] << endl;
+
+// }
 
 int main(){
     bismillah;

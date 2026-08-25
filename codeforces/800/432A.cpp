@@ -48,29 +48,21 @@ ll kpk(ll a, ll b){
 }
 
 void solve(){
+    
+    int n,k; cin >> n >> k;
+    vi arr(n);
+    for (auto &x : arr) cin >> x;
 
-    int n,m; cin >> n >> m;
+    sort(all(arr));
 
-    vector<vi> table(n, vi(m));
-
-    bool cek=false;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cin >> table[i][j];
-            if (table[i][j] == 1 && (i == n-1 || j == m-1 || i == 0 || j == 0)) {
-                cek = true;
-            }
+    int participate=0;
+    for (auto &x : arr) {
+        if (x <= 5-k) {
+            participate++;
         }
     }
 
-    if (cek) {
-        cout << 2 << endl;
-    }else{
-        cout << 4 << endl;
-    }
-
-
+    cout << participate / 3 << endl;
 
 }
 
