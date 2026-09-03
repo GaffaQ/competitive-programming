@@ -21,7 +21,6 @@ using namespace std;
 #define yes cout << "YES" << endl;
 #define maxx(a,b,c) max((a), max((b),(c))
 #define minn(a,b,c) min((a), min((b),(c))
-#define int long long
 
 using ll = long long;
 using ld = long double;
@@ -50,36 +49,38 @@ ll kpk(ll a, ll b){
 
 void solve(){
     
-    int n; cin >> n;
-    map<string, int> str;
-    map<char, int> x,y;
+    int n,m; cin >> n >> m;
 
-    long long ans = 0;
-    for (int i = 0; i < n; i++) {
-        string s; cin >> s;
-        char a,b;
-        a = s[0];
-        b = s[1];
+    string a,b; cin >> a >> b;
+    // debug(a[n-1])
 
-        ans += x[a]++-str[s];
-        ans+= y[b]++-str[s]++;
+    int idxb=m-1;
+    bool cek=true,cekpref=false;
+    for (int i = n-1; i >= 0; i--) {
+        if(idxb==0){
+            if(a[i]==b[idxb]){
+                cekpref=true;
+                break;
+            }
+            continue;
+        }
+
+        if(b[idxb]!=a[i]){
+            cek=false;
+            break;
+        }
+        idxb--;
     }
 
-    cout << ans << endl;
+    if(cek&&cekpref){
+        yes
+    }else{
+        no
+    }
 
 }
 
-/*
-6
-ab
-cb
-db
-aa
-cc
-ef
-*/
-
-signed main(){
+int main(){
     bismillah;
 
     int t = 1;

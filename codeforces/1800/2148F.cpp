@@ -19,6 +19,7 @@ int main () {
             v[i] = temp;
         }
 
+        
         sort(v.begin(), v.end());
 
         v[0].resize(v[n-1].size());

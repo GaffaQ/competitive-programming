@@ -21,7 +21,6 @@ using namespace std;
 #define yes cout << "YES" << endl;
 #define maxx(a,b,c) max((a), max((b),(c))
 #define minn(a,b,c) min((a), min((b),(c))
-#define int long long
 
 using ll = long long;
 using ld = long double;
@@ -48,38 +47,31 @@ ll kpk(ll a, ll b){
     return a / fpb(a,b) * b;
 }
 
+// bool inside(ll a, ll b, ll x){
+//     return x>=a&&
+// }
+
 void solve(){
     
-    int n; cin >> n;
-    map<string, int> str;
-    map<char, int> x,y;
-
-    long long ans = 0;
+    ll n,s,m; cin >> n >> s >> m;
+    vector<pair<ll,ll>> arr(n,{0,0});
     for (int i = 0; i < n; i++) {
-        string s; cin >> s;
-        char a,b;
-        a = s[0];
-        b = s[1];
-
-        ans += x[a]++-str[s];
-        ans+= y[b]++-str[s]++;
+        cin >> arr[i].first >> arr[i].second;
     }
 
-    cout << ans << endl;
+    sort(all(arr));
+
+    ll ans = max(arr[0].first, m-arr[n-1].second);
+    for (int i = 1; i < n; i++){
+        ans = max(ans, arr[i].first-arr[i-1].second);
+    }
+
+    if(ans>=s) yes
+    else no
 
 }
 
-/*
-6
-ab
-cb
-db
-aa
-cc
-ef
-*/
-
-signed main(){
+int main(){
     bismillah;
 
     int t = 1;
